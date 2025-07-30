@@ -917,6 +917,8 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup/student" element={<StudentSignupPage />} />
+            <Route path="/signup/teacher" element={<TeacherSignupPage />} />
             <Route 
               path="/student" 
               element={
