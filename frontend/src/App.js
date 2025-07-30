@@ -179,7 +179,205 @@ const LandingPage = () => {
   );
 };
 
-// Login Component
+// Student Signup Component
+const StudentSignupPage = () => {
+  const [formData, setFormData] = useState({ email: "", password: "", name: "" });
+  const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const payload = { ...formData, role: "student" };
+      const response = await axios.post(`${API}/auth/register`, payload);
+      
+      if (response.data.access_token) {
+        login(response.data.user, response.data.access_token);
+        navigate("/student");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert(error.response?.data?.detail || "Registration failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center px-6">
+      <Card className="w-full max-w-md bg-gray-800/80 border-gray-700 backdrop-blur-sm">
+        <CardHeader className="text-center">
+          <div className="flex items-center justify-center mb-4">
+            <BookOpen className="h-12 w-12 text-purple-400" />
+          </div>
+          <CardTitle className="text-2xl text-white">Join as Student</CardTitle>
+          <CardDescription className="text-gray-300">
+            Start your academic journey with us
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="name" className="text-white">Full Name</Label>
+              <Input
+                id="name"
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="bg-gray-700 border-gray-600 text-white"
+                required
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="email" className="text-white">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="bg-gray-700 border-gray-600 text-white"
+                required
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="password" className="text-white">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                className="bg-gray-700 border-gray-600 text-white"
+                required
+              />
+            </div>
+
+            <Button 
+              type="submit" 
+              className="w-full bg-purple-600 hover:bg-purple-700"
+              disabled={loading}
+            >
+              {loading ? "Creating Account..." : "Create Student Account"}
+            </Button>
+          </form>
+
+          <div className="text-center mt-4">
+            <button
+              onClick={() => navigate("/login")}
+              className="text-purple-400 hover:text-purple-300 text-sm"
+            >
+              Already have an account? Sign in
+            </button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+// Teacher Signup Component
+const TeacherSignupPage = () => {
+  const [formData, setFormData] = useState({ email: "", password: "", name: "" });
+  const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const payload = { ...formData, role: "teacher" };
+      const response = await axios.post(`${API}/auth/register`, payload);
+      
+      if (response.data.access_token) {
+        login(response.data.user, response.data.access_token);
+        navigate("/teacher");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert(error.response?.data?.detail || "Registration failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center px-6">
+      <Card className="w-full max-w-md bg-gray-800/80 border-gray-700 backdrop-blur-sm">
+        <CardHeader className="text-center">
+          <div className="flex items-center justify-center mb-4">
+            <Users className="h-12 w-12 text-purple-400" />
+          </div>
+          <CardTitle className="text-2xl text-white">Join as Teacher</CardTitle>
+          <CardDescription className="text-gray-300">
+            Share knowledge and inspire students
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="name" className="text-white">Full Name</Label>
+              <Input
+                id="name"
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="bg-gray-700 border-gray-600 text-white"
+                required
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="email" className="text-white">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="bg-gray-700 border-gray-600 text-white"
+                required
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="password" className="text-white">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                className="bg-gray-700 border-gray-600 text-white"
+                required
+              />
+            </div>
+
+            <Button 
+              type="submit" 
+              className="w-full bg-purple-600 hover:bg-purple-700"
+              disabled={loading}
+            >
+              {loading ? "Creating Account..." : "Create Teacher Account"}
+            </Button>
+          </form>
+
+          <div className="text-center mt-4">
+            <button
+              onClick={() => navigate("/login")}
+              className="text-purple-400 hover:text-purple-300 text-sm"
+            >
+              Already have an account? Sign in
+            </button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
 const LoginPage = () => {
   const [loginType, setLoginType] = useState("student");
   const [formData, setFormData] = useState({ email: "", password: "" });
