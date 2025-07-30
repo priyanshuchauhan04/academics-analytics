@@ -112,46 +112,33 @@ const LandingPage = () => {
 
       {/* Hero Section */}
       <main className="container mx-auto px-6 py-20">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 className="text-5xl font-bold mb-6 leading-tight">
-              Master Your <span className="text-purple-400">Academic</span> Journey with 
-              <span className="text-purple-400"> Smart Analytics</span>
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Comprehensive academic portal designed for students and teachers to track performance, 
-              manage courses, and gain insights through powerful analytics and visualizations.
-            </p>
-            <div className="flex space-x-4">
-              <Button 
-                size="lg" 
-                onClick={() => navigate('/login')}
-                className="bg-purple-600 hover:bg-purple-700 px-8 py-4 text-lg"
-              >
-                Start Learning
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                onClick={() => navigate('/login')}
-                className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 text-lg"
-              >
-                Teach Here
-              </Button>
-            </div>
-          </div>
-          <div className="relative">
-            <img 
-              src="https://images.unsplash.com/photo-1534113540057-d091ef1f115f"
-              alt="Academic Analytics"
-              className="rounded-2xl shadow-2xl"
-            />
-            <div className="absolute -bottom-6 -right-6 bg-purple-600 rounded-xl p-4">
-              <div className="flex items-center space-x-2 text-white">
-                <TrendingUp className="h-6 w-6" />
-                <span className="font-semibold">AI-Powered Analytics</span>
-              </div>
-            </div>
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-6xl font-bold mb-8 leading-tight">
+            Master Your <span className="text-purple-400">Academic</span> Journey with 
+            <span className="text-purple-400"> Smart Analytics</span>
+          </h1>
+          <p className="text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+            Comprehensive academic portal designed for students and teachers to track performance, 
+            manage courses, and gain insights through powerful analytics and visualizations.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <Button 
+              size="lg" 
+              onClick={() => navigate('/signup/student')}
+              className="bg-purple-600 hover:bg-purple-700 px-12 py-6 text-xl font-semibold min-w-[200px]"
+            >
+              <BookOpen className="h-6 w-6 mr-3" />
+              Start Learning
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg"
+              onClick={() => navigate('/signup/teacher')}
+              className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-12 py-6 text-xl font-semibold min-w-[200px]"
+            >
+              <Users className="h-6 w-6 mr-3" />
+              Teach Here
+            </Button>
           </div>
         </div>
 
