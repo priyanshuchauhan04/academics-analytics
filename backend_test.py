@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 class AcademicPortalAPITester:
-    def __init__(self, base_url="https://f42f8fb7-568c-4277-b735-3fe990c2e210.preview.emergentagent.com"):
+    def __init__(self, base_url="https://3c8d2ab8-e0de-404f-a432-e2117ab48a35.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.student_token = None
